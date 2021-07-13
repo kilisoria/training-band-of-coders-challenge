@@ -3,7 +3,7 @@ import { Card, CardText, CardBody, CardTitle, Button } from 'reactstrap';
 
 const AboutPage = () => {
   return (
-    <div>
+    <div data-testid="about">
       <Card>
         <CardBody>
           <CardTitle tag="h5">Details</CardTitle>

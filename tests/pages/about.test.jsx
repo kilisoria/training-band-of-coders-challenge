@@ -8,9 +8,7 @@ describe('ssr', () => {
   it('should render without crashing', async () => {
     render(<AboutPage />);
 
-    expect(screen.getByTestId('ssr')).toBeInTheDocument();
-    expect(screen.getByTestId('ssr-title')).toBeInTheDocument();
-    expect(screen.getByTestId('ssr-text')).toBeInTheDocument();
+    expect(screen.getByTestId('about')).toBeInTheDocument();
   });
 
   it('should render the user profile', async () => {
