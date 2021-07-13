@@ -1,20 +1,22 @@
 import React from 'react';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
-import Highlight from '../components/Highlight';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 
 export default function SSRPage({ user }) {
   return (
-    <>
-      <div className="mb-5" data-testid="ssr">
-        <h1 data-testid="ssr-title">Details:</h1>
-        <div data-testid="ssr-text">
-          <p>
-            This is the version 0.0.1 for the code Challenge. 
-          </p>
-        </div>
-      </div>
-    </>
+    <div>
+      <Card>
+        <CardBody>
+          <CardTitle tag="h5">Details</CardTitle>
+          <CardText>This is the version 0.1.9 for the Code Challenge.</CardText>
+          <Button>OK</Button>
+        </CardBody>
+      </Card>
+    </div>
   );
 }
 

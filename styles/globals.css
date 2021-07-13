@@ -41,3 +41,7 @@ p code {
 .result-block-container .result-block {
   opacity: 1;
 }
+
+.pl0 {
+  padding-left: 0;
+}
