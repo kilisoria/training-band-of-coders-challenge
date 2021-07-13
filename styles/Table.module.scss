@@ -1,0 +1,42 @@
+.container {
+    color: red;
+}
+
+
+.table {
+  display: table;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.table__row {
+  display: table-row;
+  width: 100%;
+}
+
+.table__header_cell {
+    display: table-cell;
+    background-color: rgb(194, 241, 194);
+    width: 20%;
+    height: 2rem;
+    vertical-align: middle;
+    padding-left: 2px;
+}
+
+.table__action_cell {
+    display: table-cell;
+    background-color: rgb(252, 245, 245);
+    width: 20%;
+    height: 2rem;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.table__cell {
+    display: table-cell;
+    background-color:rgb(241, 238, 238);
+    width: 20%;
+    padding-left: 2px;
+    font-size: 14px;
+    vertical-align: middle;
+}
