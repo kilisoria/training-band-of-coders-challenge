@@ -117,7 +117,7 @@ const reducer = (state = initialState, action) => {
                 errorMessage: action.message,
             };
    
-         case types.TASK_DELETE_BEGIN:
+        case types.TASK_DELETE_BEGIN:
             return {
                 ...state,
                 isDeleting: true,
@@ -126,7 +126,7 @@ const reducer = (state = initialState, action) => {
                 errorMessage: null,
             }
         
-         case types.TASK_DELETE_SUCCESS:
+        case types.TASK_DELETE_SUCCESS:
             return {
                 ...state,
                 isDeleting: false,

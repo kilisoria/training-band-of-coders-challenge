@@ -1,7 +1,6 @@
 import nextConnect from 'next-connect';
 import middleware from '../../middleware/database';
 import { ObjectId } from 'mongodb';
-import { json } from 'express';
 
 const handler = nextConnect();
 handler.use(middleware);
@@ -45,7 +44,7 @@ handler.put(async (req, res) => {
         { _id: new ObjectId(id)},
         { $set: data }
     );
-    
+
     res.json(doc);
 });
 

@@ -1,12 +1,7 @@
 import React from 'react';
-import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { Card, CardText, CardBody, CardTitle, Button } from 'reactstrap';
 
-import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
-} from 'reactstrap';
-
-export default function SSRPage({ user }) {
+const AboutPage = () => {
   return (
     <div>
       <Card>
@@ -20,4 +15,5 @@ export default function SSRPage({ user }) {
   );
 }
 
-export const getServerSideProps = withPageAuthRequired();
+export default AboutPage;
+

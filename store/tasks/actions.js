@@ -111,7 +111,7 @@ export const getTasks = () => {
     dispatch(tasksRequest());
 
     try {
-      const res = await fetch("http://localhost:3000/api/tasks");
+      const res = await fetch(`${process.env.API_HOST}/tasks`);
       const json = await res.json();
 
       dispatch(tasksSuccess(json));
@@ -126,7 +126,7 @@ export const getTask = id => {
     dispatch(taskRequest());
 
     try {
-      const res = await fetch(`http://localhost:3000/api/tasks?id=${id}`);
+      const res = await fetch(`${process.env.API_HOST}/tasks?id=${id}`);
       const json = await res.json();
 
       dispatch(taskSuccess(json));
@@ -141,7 +141,7 @@ export const createTask = (task) => {
     dispatch(taskCreateRequest());
 
     try {
-      const res = await fetch("http://localhost:3000/api/tasks", { method: "POST", body:  JSON.stringify(task) });
+      const res = await fetch(`${process.env.API_HOST}/tasks`, { method: "POST", body:  JSON.stringify(task) });
       const json = await res.json();
       
       dispatch(taskCreateSuccess(json));
@@ -156,7 +156,7 @@ export const updateTask = (id, task) => {
     dispatch(taskUpdateRequest());
 
     try {
-      const res = await fetch(`http://localhost:3000/api/tasks?id=${id}`, { method: "PUT", body:  JSON.stringify(task) });
+      const res = await fetch(`${process.env.API_HOST}/tasks?id=${id}`, { method: "PUT", body:  JSON.stringify(task) });
       const json = await res.json();
       
       dispatch(taskUpdateSuccess(json));
@@ -171,7 +171,7 @@ export const deleteTask = id => {
     dispatch(taskDeleteRequest());
 
     try {
-      const res = await fetch(`http://localhost:3000/api/tasks?id=${id}`, { method: "DELETE"});
+      const res = await fetch(`${process.env.API_HOST}/tasks?id=${id}`, { method: "DELETE"});
       const json = await res.json();
       
       dispatch(taskDeleteSuccess(json));

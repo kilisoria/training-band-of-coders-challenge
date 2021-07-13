@@ -4,9 +4,8 @@ import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
-import Highlight from '../components/Highlight';
 
-function Profile() {
+const Profile = () => {
   const { user, isLoading } = useUser();
 
   return (

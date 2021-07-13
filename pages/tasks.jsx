@@ -2,8 +2,8 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
-import { Alert, Button } from 'reactstrap';
 import Link from 'next/link';
+import { Alert, Button } from 'reactstrap';
 
 import Loading from '../components/Loading';
 import Table from '../components/Table/Table';
