@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 import Link from 'next/link';
-import { Alert, Button } from 'reactstrap';
+import { Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Loading from '../components/Loading';
 import Table from '../components/Table/Table';
@@ -14,8 +14,10 @@ const HEADERS = ['Id', 'Name', 'Type', 'Details', 'Actions'];
 
 const TasksPage = () => {
   const [showMessage, setShowMessage] = useState(false);
-  const dispatch = useDispatch()
+  const [modal, setModal] = useState(false);
+  const [idSelected, setIdSelected] = useState(null);
 
+  const dispatch = useDispatch()
   const state = useSelector((state) => state)
   const { tasks } = state
 
@@ -26,10 +28,10 @@ const TasksPage = () => {
   useEffect(() => {
     if (tasks.deleted) {
       setShowMessage(true);
+      dispatch(getTasks());
     
       setTimeout(() => {    
         setShowMessage(false);
-        dispatch(getTasks());
       }, 1000);
     }
   }, [tasks])
@@ -40,9 +42,17 @@ const TasksPage = () => {
     }
   }, [dispatch])
 
-  const handleDelete = useCallback(id => {
-    dispatch(deleteTask(id))
-  }, []);
+  const toggle = () => setModal(!modal);
+
+  const handleDelete = id => {
+    dispatch(deleteTask(idSelected));
+    toggle();
+  };
+
+  const handleTaskSelectedToDelete = id => {
+    setIdSelected(id)
+    toggle();
+  };
 
   if (tasks.isFetching || tasks.isDeleting) {
     return <Loading />
@@ -61,9 +71,21 @@ const TasksPage = () => {
           </Alert>
         }
         <div data-testid="tasks-text">
-          <Table headers={HEADERS} items={tasks.items} onDelete={handleDelete} />
+          <Table headers={HEADERS} items={tasks.items} onDelete={handleTaskSelectedToDelete} />
         </div>
       </div>
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>
+          <h1>Task</h1>
+        </ModalHeader>
+        <ModalBody>
+          Do you want to delete the selected task? Are you sure?
+        </ModalBody>
+        <ModalFooter>
+          <Button color="link" onClick={handleDelete}>Confirm</Button>{' '}
+          <Button color="secondary" onClick={()=> handleTaskSelectedToDelete(null)}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
     </>
   );
 }
