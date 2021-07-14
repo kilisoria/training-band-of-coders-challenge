@@ -45,6 +45,11 @@ const TaskUpdatePage = () => {
         dispatch(updateTask(router.query.id, task))
     }, [dispatch]);
 
+    const handleCancel = useCallback(task => {
+        router.push('tasks');
+    }, []);
+
+
     if (tasks.isSelecting) {
         return <Loading />
     }
@@ -59,7 +64,7 @@ const TaskUpdatePage = () => {
             <div className="mb-5" data-testid="tasks">
                 <h1 data-testid="tasks-title" className="pl0">Task</h1>
                 <h5>{`${tasks && tasks.selected && tasks.selected._id}`}</h5><br/>
-                <TaskForm onConfirm={handleConfirm} onCancel={()=> router.push('tasks')} data={tasks.selected} />
+                <TaskForm onConfirm={handleConfirm} onCancel={handleCancel} data={tasks.selected} />
             </div>
         </>
     );

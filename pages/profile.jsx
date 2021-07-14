@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Row, Col } from 'reactstrap';
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
 
@@ -36,7 +36,7 @@ const Profile = () => {
   );
 }
 
-export default withPageAuthRequired(Profile, {
+export default memo(withPageAuthRequired(Profile, {
   onRedirecting: () => <Loading />,
   onError: error => <ErrorMessage>{error.message}</ErrorMessage>
-});
+}));

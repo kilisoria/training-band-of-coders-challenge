@@ -41,6 +41,10 @@ const TaskAddPage = () => {
         dispatch(createTask(task))
     }, []);
 
+    const handleCancel = useCallback(task => {
+        router.push('tasks');
+    }, []);
+
     if (tasks.isAdding) {
         return <Loading />
     }
@@ -54,7 +58,7 @@ const TaskAddPage = () => {
             }
             <div className="mb-5" data-testid="tasks">
                 <h1 data-testid="tasks-title" className="pl0">New Task</h1>
-                <TaskForm onConfirm={handleConfirm} onCancel={()=> router.push('tasks')} />
+                <TaskForm onConfirm={handleConfirm} onCancel={handleCancel} />
             </div>
         </>
     );
