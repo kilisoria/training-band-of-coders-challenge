@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const TYPES = ['Low', 'Normal', 'Medium', 'Higth'];
 
-const TaskForm = ({ onConfirm, onCancel, data }) => {
+const TaskForm = ({ data, onConfirm, onCancel }) => {
   const [name, setName] = useState(data && data.name || '');
   const [type, setType] = useState(data && data.type || TYPES[0])
   const [details, setDetails] = useState(data && data.details || '')
@@ -50,6 +51,12 @@ const TaskForm = ({ onConfirm, onCancel, data }) => {
       <Button color="danger" size="sm" onClick={onCancel}>Cancel</Button>
     </Form>
   );
+}
+
+TaskForm.propTypes = {
+  data: PropTypes.object,
+  onConfirm: PropTypes.func,
+  onCancel: PropTypes.func
 }
 
 export default TaskForm;

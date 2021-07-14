@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
 import Link from 'next/link';
@@ -38,5 +39,12 @@ const Table = ({ headers, items, onDelete }) => {
         </div>
     </>
 }
+
+Table.propTypes = {
+    headers: PropTypes.array,
+    items: PropTypes.array,
+    onDelete: PropTypes.func
+}
+
 
 export default Table;
