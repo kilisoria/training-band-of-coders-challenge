@@ -8,6 +8,6 @@ describe('index', () => {
     render(<Index />);
 
     expect(screen.getByTestId('hero')).toBeInTheDocument();
-    //expect(screen.getByTestId('content')).toBeInTheDocument();
+    // expect(screen.getByTestId('content')).toBeInTheDocument();
   });
 });

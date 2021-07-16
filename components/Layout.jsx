@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container } from 'reactstrap';
 import Head from 'next/head';
 
@@ -24,5 +25,9 @@ const Layout = ({ children }) => (
     </main>
   </>
 );
+
+Layout.propTypes = {
+  children: PropTypes.object,
+};
 
 export default Layout;

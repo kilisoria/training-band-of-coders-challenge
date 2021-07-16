@@ -34,9 +34,12 @@ const Profile = () => {
       )}
     </>
   );
-}
+};
 
 export default memo(withPageAuthRequired(Profile, {
   onRedirecting: () => <Loading />,
-  onError: error => <ErrorMessage>{error.message}</ErrorMessage>
+  onError: (error) => {
+    const { message } = error;
+    return <ErrorMessage>{message}</ErrorMessage>;
+  },
 }));

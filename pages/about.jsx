@@ -1,10 +1,12 @@
 import React, { memo, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import { Card, CardText, CardBody, CardTitle, Button } from 'reactstrap';
+import {
+  Card, CardText, CardBody, CardTitle, Button,
+} from 'reactstrap';
 
 const AboutPage = () => {
   const router = useRouter();
-  
+
   const handleConfirm = useCallback(() => {
     router.push('tasks');
   }, []);
@@ -20,6 +22,6 @@ const AboutPage = () => {
       </Card>
     </div>
   );
-}
+};
 
 export default memo(AboutPage);

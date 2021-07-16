@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Alert } from 'reactstrap';
 
 const ErrorMessage = ({ children }) => (
@@ -6,5 +7,9 @@ const ErrorMessage = ({ children }) => (
     {children}
   </Alert>
 );
+
+ErrorMessage.propTypes = {
+  children: PropTypes.elementType,
+};
 
 export default ErrorMessage;

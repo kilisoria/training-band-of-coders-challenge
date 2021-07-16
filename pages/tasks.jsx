@@ -1,9 +1,11 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 import Link from 'next/link';
-import { Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {
+  Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter,
+} from 'reactstrap';
 
 import Loading from '../components/Loading';
 import Table from '../components/Table/Table';
@@ -17,77 +19,77 @@ const TasksPage = () => {
   const [modal, setModal] = useState(false);
   const [idSelected, setIdSelected] = useState(null);
 
-  const dispatch = useDispatch()
-  const state = useSelector((state) => state)
-  const { tasks } = state
+  const dispatch = useDispatch();
+  const state = useSelector((storeState) => storeState);
+  const { tasks } = state;
 
   useEffect(() => {
-    dispatch(getTasks())
-  }, [dispatch])
+    dispatch(getTasks());
+  }, [dispatch]);
 
   useEffect(() => {
     if (tasks.deleted) {
       setShowMessage(true);
       dispatch(getTasks());
-    
-      setTimeout(() => {    
+
+      setTimeout(() => {
         setShowMessage(false);
       }, 1000);
     }
-  }, [tasks])
+  }, [tasks]);
 
-  useEffect(() => {
-    return () => {
-      dispatch(resetTask())
-    }
-  }, [dispatch])
+  useEffect(() => () => {
+    dispatch(resetTask());
+  }, [dispatch]);
 
   const toggle = () => setModal(!modal);
 
-  const handleDelete = id => {
+  const handleDelete = () => {
     dispatch(deleteTask(idSelected));
     toggle();
   };
 
-  const handleTaskSelectedToDelete = id => {
-    setIdSelected(id)
+  const handleTaskSelectedToDelete = (id) => {
+    setIdSelected(id);
     toggle();
   };
 
   if (tasks.isFetching || tasks.isDeleting) {
-    return <Loading />
+    return <Loading />;
   }
 
   return (
     <>
       <div className="mb-5" data-testid="tasks">
         <h1 data-testid="tasks-title" className="pl0">Tasks</h1>
-        <Link  href="/task-add">
+        <Link href="/task-add">
           <Button color="link" className="pl0">Add new task</Button>
         </Link>
-        {tasks.deleted && showMessage &&
+        {tasks.deleted && showMessage
+          && (
           <Alert color="success">
-              The task has just deleted successfully!
+            The task has just deleted successfully!
           </Alert>
-        }
+          )}
         <div data-testid="tasks-text">
           <Table headers={HEADERS} items={tasks.items} onDelete={handleTaskSelectedToDelete} />
         </div>
       </div>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>
-          <h1>Task</h1>
+          Task
         </ModalHeader>
         <ModalBody>
           Do you want to delete the selected task? Are you sure?
         </ModalBody>
         <ModalFooter>
-          <Button color="link" onClick={handleDelete}>Confirm</Button>{' '}
-          <Button color="secondary" onClick={()=> handleTaskSelectedToDelete(null)}>Cancel</Button>
+          <Button color="link" onClick={handleDelete}>Confirm</Button>
+          {' '}
+          <Button color="secondary" onClick={() => handleTaskSelectedToDelete(null)}>Cancel</Button>
         </ModalFooter>
       </Modal>
     </>
   );
-}
+};
 
 export default withPageAuthRequired(TasksPage);

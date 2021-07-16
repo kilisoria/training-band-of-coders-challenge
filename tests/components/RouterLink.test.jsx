@@ -8,7 +8,7 @@ describe('RouterLink', () => {
     render(
       <RouterLink testId="router-link" href="/url">
         Text
-      </RouterLink>
+      </RouterLink>,
     );
 
     expect(screen.getByTestId('router-link')).toBeInTheDocument();

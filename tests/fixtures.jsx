@@ -1,3 +1,4 @@
+import React from 'react';
 import { UserProvider } from '@auth0/nextjs-auth0';
 
 export const mockUser = {
@@ -7,9 +8,13 @@ export const mockUser = {
   nickname: 'foo',
   picture: 'foo.jpg',
   sub: '1',
-  updated_at: null
+  updated_at: null,
 };
 
-export const withUserProvider = ({ user, profileUrl } = {}) => {
-  return props => <UserProvider {...props} user={user} profileUrl={profileUrl} />;
-};
+export const withUserProvider = ({ user, profileUrl } = {}) => (props) => (
+  <UserProvider
+    {...props}
+    user={user}
+    profileUrl={profileUrl}
+  />
+);
